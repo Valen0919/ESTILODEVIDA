@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estilo de Vida Saludable</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #0D1B2A;
+    --azul-medio: #1B3A5C;
+    --azul-claro: #2E6DA4;
+    --azul-brillante: #4A9FD5;
+    --azul-palido: #D6E8F7;
+    --fondo: #0A1628;
+    --card-bg: #112240;
+    --texto: #E8F1FF;
+    --texto-suave: #7CA4C8;
+    --acento: #F4845F;
+    --blanco: #FFFFFF;
+    --sombra: 0 4px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0D1B2A 0%, #1B3A5C 60%, #0D2137 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(74,159,213,0.2);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(74,159,213,0.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(244,132,95,0.06);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(74,159,213,0.15);
+    color: var(--azul-brillante);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(74,159,213,0.25);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    color: var(--blanco);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--azul-brillante);
+  }
+  .hero p {
+    color: rgba(255,255,255,0.60);
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    background: var(--azul);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(74,159,213,0.15);
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: rgba(74,159,213,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--azul-brillante);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--texto-suave);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* FORM SECTIONS */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+    border: 1px solid rgba(74,159,213,0.12);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--azul-brillante);
+    margin-bottom: 6px;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin-bottom: 24px;
+  }
+
+  /* FORM FIELDS */
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto);
+    margin-bottom: 8px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(74,159,213,0.25);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--texto);
+    background: rgba(255,255,255,0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+  .field input::placeholder { color: var(--texto-suave); }
+  .field select option { background: var(--azul-medio); color: var(--texto); }
+  .field input:focus, .field select:focus {
+    outline: none;
+    border-color: var(--azul-brillante);
+    box-shadow: 0 0 0 3px rgba(74,159,213,0.15);
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1.5px solid rgba(74,159,213,0.25);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-suave);
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--azul-brillante); color: var(--texto); }
+  .chip.selected {
+    background: rgba(74,159,213,0.18);
+    border-color: var(--azul-brillante);
+    color: var(--blanco);
+    font-weight: 600;
+  }
+
+  /* SLIDER */
+  .slider-wrap { padding: 8px 0; }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 8px;
+  }
+  input[type=range] {
+    width: 100%;
+    accent-color: var(--azul-brillante);
+    height: 4px;
+    cursor: pointer;
+  }
+  .slider-value {
+    text-align: center;
+    font-size: 28px;
+    font-family: 'DM Serif Display', serif;
+    color: var(--azul-brillante);
+    margin-top: 8px;
+  }
+  .slider-desc {
+    text-align: center;
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-top: 4px;
+  }
+
+  /* SUBMIT */
+  .btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: var(--azul-claro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+    margin-top: 8px;
+  }
+  .btn-submit:hover { background: var(--azul-brillante); }
+  .btn-submit:active { transform: scale(0.99); }
+
+  /* RESULTS */
+  #results { display: none; animation: fadeUp 0.6s ease forwards; }
+
+  .result-hero {
+    background: linear-gradient(135deg, #0D1B2A 0%, #1B3A5C 100%);
+    border-radius: 20px;
+    padding: 36px 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--blanco);
+    border: 1px solid rgba(74,159,213,0.2);
+  }
+  .result-hero .emoji { font-size: 48px; margin-bottom: 12px; }
+  .result-hero h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  .result-hero p { color: rgba(255,255,255,0.65); font-size: 15px; }
+
+  .result-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    box-shadow: var(--sombra);
+    border-left: 4px solid var(--azul-brillante);
+    border-top: 1px solid rgba(74,159,213,0.12);
+    border-right: 1px solid rgba(74,159,213,0.12);
+    border-bottom: 1px solid rgba(74,159,213,0.12);
+  }
+  .result-card.mental { border-left-color: #A8DADC; }
+  .result-card.alimentacion { border-left-color: var(--acento); }
+
+  .result-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 14px;
+  }
+  .tip {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(74,159,213,0.1);
+  }
+  .tip:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .tip-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(74,159,213,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .tip-text { font-size: 14px; line-height: 1.6; color: var(--texto); }
+  .tip-text strong { color: var(--azul-brillante); font-weight: 600; }
+
+  .badge-perfil {
+    display: inline-block;
+    background: rgba(74,159,213,0.12);
+    color: var(--azul-brillante);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(74,159,213,0.25);
+  }
+
+  .btn-restart {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    color: var(--azul-brillante);
+    border: 2px solid rgba(74,159,213,0.35);
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+  .btn-restart:hover { background: rgba(74,159,213,0.1); border-color: var(--azul-brillante); }
+
+  @media (max-width: 480px) {
+    .field-row { grid-template-columns: 1fr; }
+    .section { padding: 24px; }
+    .result-card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Seguridad y Salud en el Trabajo</div>
+  <h1>Estilo de Vida<br><em>Saludable</em></h1>
+  <p>Completa tu perfil y recibe un plan personalizado de salud física, mental y alimentación.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0 de 4 secciones</div>
+</div>
+
+<div class="container" id="formContainer">
+
+  <!-- SECCIÓN 1: DATOS PERSONALES -->
+  <div class="section">
+    <div class="section-title">Datos personales</div>
+    <div class="section-subtitle">Información básica para calcular tu perfil de salud</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Edad</label>
+        <input type="number" id="edad" placeholder="Ej: 28" min="18" max="65" oninput="updateProgress()">
+      </div>
+      <div class="field">
+        <label>Género</label>
+        <select id="genero" onchange="updateProgress()">
+          <option value="">Selecciona</option>
+          <option value="M">Hombre</option>
+          <option value="F">Mujer</option>
+          <option value="O">Prefiero no decir</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Peso (kg)</label>
+        <input type="number" id="peso" placeholder="Ej: 70" min="40" max="200" oninput="updateProgress()">
+      </div>
+      <div class="field">
+        <label>Estatura (cm)</label>
+        <input type="number" id="estatura" placeholder="Ej: 168" min="140" max="210" oninput="updateProgress()">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Turno de trabajo</label>
+      <select id="turno" onchange="updateProgress()">
+        <option value="">Selecciona tu turno</option>
+        <option value="1-8">1 - 8 horas</option>
+        <option value="1-9">1 - 9 horas</option>
+        <option value="1-10">1 - 10 horas</option>
+        <option value="1-11">1 - 11 horas</option>
+        <option value="1-12">1 - 12 horas</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: ACTIVIDAD FÍSICA -->
+  <div class="section">
+    <div class="section-title">Actividad física</div>
+    <div class="section-subtitle">¿Cómo es tu rutina de movimiento actualmente?</div>
+
+    <div class="field">
+      <label>¿Practicas algún deporte o ejercicio?</label>
+      <div class="chips" id="chips-ejercicio">
+        <div class="chip" onclick="selectChip(this, 'ejercicio', 'no')">No hago ejercicio</div>
+        <div class="chip" onclick="selectChip(this, 'ejercicio', 'caminata')">Caminatas</div>
+        <div class="chip" onclick="selectChip(this, 'ejercicio', 'gym')">Gimnasio</div>
+        <div class="chip" onclick="selectChip(this, 'ejercicio', 'deporte')">Deporte en equipo</div>
+        <div class="chip" onclick="selectChip(this, 'ejercicio', 'otro')">Otro</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿Cuántas veces por semana?</label>
+      <div class="chips" id="chips-frecuencia">
+        <div class="chip" onclick="selectChip(this, 'frecuencia', '0')">Ninguna</div>
+        <div class="chip" onclick="selectChip(this, 'frecuencia', '1-2')">1-2 veces</div>
+        <div class="chip" onclick="selectChip(this, 'frecuencia', '3-4')">3-4 veces</div>
+        <div class="chip" onclick="selectChip(this, 'frecuencia', '5+')">5 o más</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿Sientes dolores frecuentes en estas zonas? (puedes elegir varias)</label>
+      <div class="chips" id="chips-dolor">
+        <div class="chip multi" onclick="toggleChip(this, 'dolor', 'ninguno')">Ninguno</div>
+        <div class="chip multi" onclick="toggleChip(this, 'dolor', 'espalda')">Espalda baja</div>
+        <div class="chip multi" onclick="toggleChip(this, 'dolor', 'cuello')">Cuello / hombros</div>
+        <div class="chip multi" onclick="toggleChip(this, 'dolor', 'munecas')">Muñecas</div>
+        <div class="chip multi" onclick="toggleChip(this, 'dolor', 'ojos')">Fatiga visual</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: ALIMENTACIÓN -->
+  <div class="section">
+    <div class="section-title">Hábitos de alimentación</div>
+    <div class="section-subtitle">Cuéntanos cómo comes durante tu jornada laboral</div>
+
+    <div class="field">
+      <label>¿Cuántas comidas haces al día?</label>
+      <div class="chips" id="chips-comidas">
+        <div class="chip" onclick="selectChip(this, 'comidas', '1-2')">1-2 comidas</div>
+        <div class="chip" onclick="selectChip(this, 'comidas', '3')">3 comidas</div>
+        <div class="chip" onclick="selectChip(this, 'comidas', '4-5')">4-5 comidas</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿Qué consumes más en el trabajo?</label>
+      <div class="chips" id="chips-consumo">
+        <div class="chip multi" onclick="toggleChip(this, 'consumo', 'cafe')">☕ Café</div>
+        <div class="chip multi" onclick="toggleChip(this, 'consumo', 'gaseosa')">🥤 Gaseosas</div>
+        <div class="chip multi" onclick="toggleChip(this, 'consumo', 'snacks')">🍟 Snacks / comida rápida</div>
+        <div class="chip multi" onclick="toggleChip(this, 'consumo', 'agua')">💧 Agua</div>
+        <div class="chip multi" onclick="toggleChip(this, 'consumo', 'fruta')">🍎 Fruta</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: SALUD MENTAL -->
+  <div class="section">
+    <div class="section-title">Salud mental</div>
+    <div class="section-subtitle">Todo lo que sientes en el trabajo importa</div>
+
+    <div class="field">
+      <label>¿Cómo calificarías tu nivel de estrés laboral?</label>
+      <div class="slider-wrap">
+        <div class="slider-labels">
+          <span>😌 Sin estrés</span>
+          <span>😰 Muy estresado</span>
+        </div>
+        <input type="range" min="1" max="10" value="5" id="estres" oninput="updateStress(this.value)">
+        <div class="slider-value" id="stressValue">5</div>
+        <div class="slider-desc" id="stressDesc">Estrés moderado</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿Cómo terminas la jornada normalmente?</label>
+      <div class="chips" id="chips-jornada">
+        <div class="chip" onclick="selectChip(this, 'jornada', 'bien')">Con energía</div>
+        <div class="chip" onclick="selectChip(this, 'jornada', 'agotado')">Agotado físicamente</div>
+        <div class="chip" onclick="selectChip(this, 'jornada', 'burnout')">Agotado mentalmente</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿Has tenido alguno de estos síntomas en el último mes?</label>
+      <div class="chips" id="chips-sintomas">
+        <div class="chip multi" onclick="toggleChip(this, 'sintomas', 'ninguno')">Ninguno</div>
+        <div class="chip multi" onclick="toggleChip(this, 'sintomas', 'insomnio')">Insomnio</div>
+        <div class="chip multi" onclick="toggleChip(this, 'sintomas', 'ansiedad')">Ansiedad</div>
+        <div class="chip multi" onclick="toggleChip(this, 'sintomas', 'irritabilidad')">Irritabilidad</div>
+        <div class="chip multi" onclick="toggleChip(this, 'sintomas', 'desmotivacion')">Desmotivación</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-submit" onclick="generarResultados()">Ver mi plan personalizado →</button>
+</div>
+
+<!-- RESULTADOS -->
+<div class="container" id="results">
+  <div class="result-hero">
+    <div class="emoji" id="resultEmoji">💙</div>
+    <h2 id="resultTitle">Tu plan está listo</h2>
+    <p id="resultSubtitle">Basado en tu perfil de salud laboral</p>
+  </div>
+
+  <div id="badgePerfil"></div>
+  <div id="tipsEjercicio" class="result-card"></div>
+  <div id="tipsAlimentacion" class="result-card alimentacion"></div>
+  <div id="tipsMental" class="result-card mental"></div>
+
+  <button class="btn-restart" onclick="reiniciar()">← Volver a completar el formulario</button>
+</div>
+
+<script>
+  const chipData = {};
+  const multiData = {};
+
+  function selectChip(el, group, value) {
+    document.querySelectorAll(`#chips-${group} .chip`).forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    chipData[group] = value;
+    updateProgress();
+  }
+
+  function toggleChip(el, group, value) {
+    if (!multiData[group]) multiData[group] = [];
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      multiData[group] = multiData[group].filter(v => v !== value);
+    } else {
+      el.classList.add('selected');
+      multiData[group].push(value);
+    }
+  }
+
+  function updateStress(val) {
+    document.getElementById('stressValue').textContent = val;
+    const descs = ['','Excelente, muy tranquilo','Muy bajo estrés','Bajo estrés','Estrés leve','Estrés moderado','Estrés alto','Estrés muy alto','Estrés crítico','Agotamiento total','Burnout'];
+    document.getElementById('stressDesc').textContent = descs[val] || '';
+  }
+
+  function updateProgress() {
+    let completed = 0;
+    if (document.getElementById('edad').value && document.getElementById('genero').value) completed++;
+    if (chipData['ejercicio']) completed++;
+    if (chipData['comidas']) completed++;
+    if (chipData['jornada']) completed++;
+    const pct = (completed / 4) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${completed} de 4 secciones`;
+  }
+
+  function calcIMC(peso, estatura) {
+    const h = estatura / 100;
+    return peso / (h * h);
+  }
+
+  function generarResultados() {
+    const edad = parseInt(document.getElementById('edad').value) || 25;
+    const peso = parseFloat(document.getElementById('peso').value) || 70;
+    const estatura = parseFloat(document.getElementById('estatura').value) || 165;
+    const genero = document.getElementById('genero').value || 'O';
+    const turno = document.getElementById('turno').value || '1-8';
+    const estres = parseInt(document.getElementById('estres').value);
+    const ejercicio = chipData['ejercicio'] || 'no';
+    const frecuencia = chipData['frecuencia'] || '0';
+    const jornada = chipData['jornada'] || 'agotado';
+    const comidas = chipData['comidas'] || '3';
+    const dolor = multiData['dolor'] || [];
+    const consumo = multiData['consumo'] || [];
+    const sintomas = multiData['sintomas'] || [];
+
+    const imc = calcIMC(peso, estatura);
+    const perfilIMC = imc < 18.5 ? 'bajo peso' : imc < 25 ? 'peso saludable' : imc < 30 ? 'sobrepeso' : 'obesidad';
+
+    // Grupos de edad
+    const esJoven = edad < 30;       // 18-29
+    const esMedio = edad >= 30 && edad < 45; // 30-44
+    const esMayor = edad >= 45;       // 45+
+
+    // Horas de jornada
+    const horasJornada = parseInt(turno.split('-')[1]);
+    const jornadaLarga = horasJornada >= 10;
+    const jornadaExtrema = horasJornada >= 11;
+
+    // Género
+    const esMujer = genero === 'F';
+    const esHombre = genero === 'M';
+
+    // ============================================================
+    // TIPS EJERCICIO — diferenciados por edad, IMC, género, horas
+    // ============================================================
+    let tipsEj = [];
+
+    // Por edad y nivel de actividad
+    if (ejercicio === 'no' || frecuencia === '0') {
+      if (esJoven) {
+        tipsEj.push({icon:'🏃', texto:'<strong>Empieza con HIIT corto (18-29 años):</strong> Con tu edad tienes una capacidad de recuperación excelente. Prueba 15 minutos de intervalos: 30 seg rápido, 30 seg lento. Hazlo 3 veces por semana antes del trabajo.'});
+      } else if (esMedio) {
+        tipsEj.push({icon:'🚶', texto:'<strong>Caminata activa (30-44 años):</strong> 30 minutos de caminata rápida diaria es suficiente para activar tu metabolismo. A esta edad el impacto moderado es ideal para las articulaciones.'});
+      } else {
+        tipsEj.push({icon:'🧘', texto:'<strong>Movimiento suave (45+ años):</strong> Yoga o estiramientos de 20 minutos en la mañana protegen tus articulaciones y reducen el riesgo cardiovascular. Prioriza la constancia sobre la intensidad.'});
+      }
+      tipsEj.push({icon:'🪑', texto:'<strong>Pausas activas cada hora:</strong> Levántate 5 minutos por hora. Con ' + horasJornada + ' horas de jornada debes hacer mínimo ' + (horasJornada - 1) + ' pausas activas al día.'});
+    } else if (frecuencia === '1-2') {
+      if (esJoven) {
+        tipsEj.push({icon:'📈', texto:'<strong>Aumenta la frecuencia (18-29 años):</strong> Con tu metabolismo activo, pasar de 1-2 a 4 sesiones semanales haría una diferencia enorme. Agrega 2 días de entrenamiento de fuerza.'});
+      } else if (esMedio) {
+        tipsEj.push({icon:'💪', texto:'<strong>Agrega un día de fuerza (30-44 años):</strong> A esta edad el músculo se pierde más rápido. Agrega 1-2 días de ejercicio de fuerza a tu rutina actual para mantener masa muscular.'});
+      } else {
+        tipsEj.push({icon:'🏊', texto:'<strong>Ejercicio de bajo impacto (45+ años):</strong> Natación o bicicleta estática son ideales para aumentar tu frecuencia sin dañar las articulaciones. Apunta a 3-4 veces por semana.'});
+      }
+    } else {
+      tipsEj.push({icon:'🏆', texto:'<strong>¡Excelente rutina!</strong> ' + (esJoven ? 'Aprovecha tu recuperación rápida y considera agregar entrenamiento de movilidad.' : esMedio ? 'Asegúrate de incluir días de descanso activo y estiramientos.' : 'A los 45+ mantener esta constancia es lo más valioso. Incluye proteína post-entrenamiento.') });
+    }
+
+    // Por IMC
+    if (perfilIMC === 'bajo peso') {
+      tipsEj.push({icon:'⚖️', texto:'<strong>Ejercicio de fuerza prioritario:</strong> Con bajo peso, el objetivo es ganar masa muscular. Prioriza ejercicios de fuerza con peso corporal: sentadillas, flexiones, dominadas. ' + (esJoven ? 'Tienes ventaja: los jóvenes ganan músculo más fácil.' : '') });
+    } else if (perfilIMC === 'obesidad') {
+      tipsEj.push({icon:'🛡️', texto:'<strong>Protege tus articulaciones:</strong> Con tu IMC actual, evita ejercicios de alto impacto como correr en concreto. Prefiere natación, bicicleta o caminata. ' + (esMayor ? 'Con 45+ años esto es especialmente importante.' : '') });
+    }
+
+    // Por género
+    if (esMujer && (esMedio || esMayor)) {
+      tipsEj.push({icon:'🦴', texto:'<strong>Salud ósea (mujeres 30+):</strong> El ejercicio de fuerza y caminar son cruciales para prevenir osteoporosis. Incluye al menos 2 sesiones de fuerza semanales.'});
+    }
+    if (esHombre && esMayor) {
+      tipsEj.push({icon:'❤️', texto:'<strong>Salud cardiovascular (hombres 45+):</strong> El riesgo cardiovascular aumenta significativamente. 30 minutos de cardio moderado 5 días a la semana reduce ese riesgo a la mitad.'});
+    }
+
+    // Por jornada larga
+    if (jornadaExtrema) {
+      tipsEj.push({icon:'⏱️', texto:'<strong>Jornada de ' + horasJornada + ' horas:</strong> Con esta carga horaria, el ejercicio debe ser obligatorio. Aunque sea 20 minutos al salir del trabajo, tu cuerpo necesita ese movimiento para recuperarse del sedentarismo.'});
+    }
+
+    // Dolores
+    if (dolor.includes('espalda')) tipsEj.push({icon:'🧘', texto:'<strong>Dolor lumbar:</strong> ' + (esHombre && esMayor ? 'Con 45+ años y dolor lumbar, los ejercicios de core son urgentes. ' : '') + 'Ajusta tu silla a 90°, coloca soporte lumbar y estira la espalda hacia atrás cada 2 horas.'});
+    if (dolor.includes('cuello')) tipsEj.push({icon:'↔️', texto:'<strong>Cuello y hombros:</strong> Gira la cabeza de lado a lado 5 veces cada hora. La pantalla debe estar exactamente a la altura de tus ojos. ' + (esMujer ? 'Las mujeres tienden a acumular tensión en trapecio; masajes de 2 minutos ayudan.' : '')});
+    if (dolor.includes('munecas')) tipsEj.push({icon:'🤲', texto:'<strong>Muñecas:</strong> Flexiona hacia arriba y abajo 30 segundos cada hora. Con ' + horasJornada + ' horas al teclado, esto es crítico para prevenir el túnel carpiano.'});
+    if (dolor.includes('ojos')) tipsEj.push({icon:'👀', texto:'<strong>Fatiga visual:</strong> Regla 20-20-20 cada 20 minutos. Con jornadas de ' + horasJornada + ' horas frente a pantalla, considera lentes con filtro de luz azul.'});
+
+    // ============================================================
+    // TIPS ALIMENTACIÓN — diferenciados por edad, IMC, género
+    // ============================================================
+    let tipsAl = [];
+
+    // Calorías por perfil
+    if (perfilIMC === 'bajo peso') {
+      if (esHombre && esJoven) {
+        tipsAl.push({icon:'🍗', texto:'<strong>Aumenta calorías (hombre joven, bajo peso):</strong> Necesitas entre 2,800-3,200 kcal diarias. Agrega proteínas en cada comida: huevo, pollo, legumbres. El desayuno es obligatorio.'});
+      } else if (esMujer && esJoven) {
+        tipsAl.push({icon:'🥑', texto:'<strong>Grasas saludables (mujer joven, bajo peso):</strong> Aguacate, frutos secos y aceite de oliva deben ser parte de tus comidas diarias. Tu cuerpo necesita grasas buenas, no solo proteínas.'});
+      } else {
+        tipsAl.push({icon:'🍽️', texto:'<strong>Densidad calórica (bajo peso, 30+):</strong> Come porciones pequeñas pero muy nutritivas. Batidos de proteína, avena con frutas y legumbres son tus aliados.'});
+      }
+    } else if (perfilIMC === 'sobrepeso') {
+      if (esJoven) {
+        tipsAl.push({icon:'⏰', texto:'<strong>Ayuno intermitente opcional (18-29 años):</strong> Con tu edad, una ventana de alimentación de 8 horas (ej: 12pm-8pm) puede ayudarte a regular el peso sin pasar hambre.'});
+      } else if (esMedio) {
+        tipsAl.push({icon:'🥗', texto:'<strong>Control de carbohidratos (30-44 años):</strong> El metabolismo baja a esta edad. Reduce el arroz y pan blanco a la mitad; reemplaza con verduras y proteínas magras.'});
+      } else {
+        tipsAl.push({icon:'🫀', texto:'<strong>Prioridad cardiovascular (45+ con sobrepeso):</strong> Reduce sodio y grasas saturadas. Come pescado 2 veces por semana. Tu riesgo cardiovascular se reduce significativamente con estos cambios.'});
+      }
+    } else if (perfilIMC === 'obesidad') {
+      tipsAl.push({icon:'👨‍⚕️', texto:'<strong>Plan médico recomendado:</strong> Con este IMC, es ideal consultar un nutricionista. Mientras tanto: elimina bebidas azucaradas, reduce porciones a 3/4 de lo habitual y come despacio.'});
+    }
+
+    // Por género
+    if (esMujer) {
+      tipsAl.push({icon:'🌿', texto:'<strong>Hierro y calcio (mujeres):</strong> Incluye espinaca, brócoli y fríjoles para el hierro. Para el calcio, yogur o leche a diario. Especialmente importante en jornadas largas de trabajo.'});
+    }
+    if (esHombre && esMayor) {
+      tipsAl.push({icon:'🫀', texto:'<strong>Salud prostática y cardiovascular (hombres 45+):</strong> Tomate (licopeno), frutos secos y pescado azul deben estar en tu dieta semanal. Reduce la carne roja a 2 veces por semana.'});
+    }
+
+    // Hábitos
+    if (consumo.includes('gaseosa')) tipsAl.push({icon:'💧', texto:'<strong>Elimina las gaseosas:</strong> ' + (esJoven ? 'A tu edad el azúcar se procesa mejor pero igual genera inflamación. ' : 'Con los años el azúcar se almacena más fácil como grasa. ') + 'Reemplaza por agua con limón o agua de panela fría.'});
+    if (consumo.includes('cafe')) {
+      const limCafe = esMujer ? '2 tazas' : '3 tazas';
+      tipsAl.push({icon:'☕', texto:'<strong>Límite de café:</strong> Máximo ' + limCafe + ' al día. ' + (esMujer ? 'En mujeres el café en exceso interfiere con la absorción de hierro y calcio.' : 'En hombres, el exceso de cafeína eleva la presión arterial.')});
+    }
+    if (consumo.includes('snacks')) tipsAl.push({icon:'🍎', texto:'<strong>Snacks inteligentes:</strong> ' + (esJoven ? 'Frutas, maní o granola son perfectos para tu ritmo activo.' : esMedio ? 'Prefiere fruta, yogur natural o avena. Evita el azúcar refinada a esta edad.' : 'A los 45+ los snacks azucarados se convierten directamente en triglicéridos. Nueces y frutas son tu opción.')});
+    if (comidas === '1-2') tipsAl.push({icon:'🍽️', texto:'<strong>Aumenta a 3 comidas mínimo:</strong> ' + (jornadaLarga ? 'Con ' + horasJornada + ' horas de jornada, saltarte comidas baja tu concentración y aumenta los errores. ' : '') + 'Lleva siempre algo al trabajo: una fruta o yogur como mínimo.'});
+    if (!consumo.includes('agua')) tipsAl.push({icon:'💧', texto:'<strong>Hidratación crítica:</strong> Con ' + horasJornada + ' horas de jornada necesitas mínimo ' + (horasJornada >= 10 ? '3 litros' : '2 litros') + ' de agua al día. ' + (esMayor ? 'Con la edad la sensación de sed disminuye; pon alarmas cada 2 horas.' : 'Pon una botella visible en tu puesto.')});
+
+    // ============================================================
+    // TIPS SALUD MENTAL — diferenciados por edad, género, síntomas
+    // ============================================================
+    let tipsMen = [];
+
+    // Por nivel de estrés
+    if (estres >= 8) {
+      tipsMen.push({icon:'🌬️', texto:'<strong>Estrés crítico — Respiración 4-7-8:</strong> ' + (esJoven ? 'A tu edad el estrés crónico puede crear patrones negativos. ' : esMedio ? 'En la etapa de mayor responsabilidad laboral, esto es urgente. ' : 'A los 45+ el estrés crónico tiene impacto directo en presión arterial. ') + 'Inhala 4 seg, aguanta 7, exhala 8. Repite 4 veces.'});
+      tipsMen.push({icon:'🛑', texto:'<strong>Señal de alerta:</strong> Un estrés de ' + estres + '/10 es insostenible. Considera hablar con el área de bienestar de la empresa o un profesional. No es debilidad, es inteligencia.'});
+    } else if (estres >= 6) {
+      tipsMen.push({icon:'🌬️', texto:'<strong>Manejo del estrés moderado-alto:</strong> Técnica de respiración cuadrada: inhala 4 seg, pausa 4, exhala 4, pausa 4. ' + (esMujer ? 'Las mujeres tienden a internalizar el estrés; identificar la fuente es el primer paso.' : 'Los hombres tienden a ignorar el estrés hasta que explota; atenderlo hoy evita problemas mayores.')});
+    } else {
+      tipsMen.push({icon:'✨', texto:'<strong>Estrés bajo — ¡Mantén el equilibrio!</strong> ' + (esJoven ? 'A tu edad es buen momento para crear hábitos de mindfulness antes de que las responsabilidades aumenten.' : 'Sigue con lo que estás haciendo bien. Identifica qué te mantiene tranquilo y protégelo.')});
+    }
+
+    // Por jornada
+    if (jornadaExtrema) {
+      tipsMen.push({icon:'⏰', texto:'<strong>Jornada de ' + horasJornada + ' horas — Límites urgentes:</strong> Esta carga laboral supera lo recomendado. Es fundamental desconectarte completamente al salir. ' + (esMayor ? 'A los 45+ la recuperación es más lenta; el sueño y el descanso no son opcionales.' : 'Sin desconexión real, el agotamiento se acumula semana a semana.')});
+    }
+
+    // Por síntomas
+    if (sintomas.includes('insomnio')) {
+      tipsMen.push({icon:'😴', texto:'<strong>Insomnio:</strong> ' + (esJoven ? 'El insomnio a tu edad suele ser por pantallas y estimulación excesiva. ' : esMedio ? 'El insomnio en adultos de 30-44 suele ser por preocupaciones. ' : 'A los 45+ el insomnio puede tener causas hormonales; consulta a tu médico. ') + 'Rutina fija: misma hora todos los días, sin pantallas 1 hora antes.'});
+    }
+    if (sintomas.includes('ansiedad')) {
+      tipsMen.push({icon:'🧘', texto:'<strong>Ansiedad:</strong> Técnica 5-4-3-2-1: nombra 5 cosas que ves, 4 que tocas, 3 que escuchas, 2 que hueles, 1 que saboreas. ' + (esMujer ? 'En mujeres la ansiedad también puede manifestarse como tensión física; combínalo con estiramiento.' : '')});
+    }
+    if (sintomas.includes('irritabilidad')) {
+      tipsMen.push({icon:'😤', texto:'<strong>Irritabilidad:</strong> ' + (esHombre ? 'En hombres la irritabilidad laboral suele venir de sensación de falta de control. ' : 'En mujeres puede estar ligada a ciclos hormonales o sobrecarga. ') + 'Identifica los momentos del día donde más la sientes y toma un descanso preventivo antes.'});
+    }
+    if (sintomas.includes('desmotivacion')) {
+      tipsMen.push({icon:'🎯', texto:'<strong>Desmotivación:</strong> ' + (esJoven ? 'A tu edad la desmotivación puede indicar que el trabajo no está alineado con tus metas. Habla con tu líder sobre crecimiento.' : esMedio ? 'En esta etapa es normal cuestionar el propósito. Define 1 meta personal fuera del trabajo.' : 'La desmotivación a los 45+ a veces es fatiga acumulada. Toma vacaciones reales si no lo has hecho.')});
+    }
+
+    // Por género y jornada
+    if (esMujer && jornadaLarga) {
+      tipsMen.push({icon:'💜', texto:'<strong>Carga mental (mujeres, jornada larga):</strong> Las mujeres tienden a llevar preocupaciones del trabajo a casa más que los hombres. Crea un ritual de "cierre": al salir escribe 3 cosas que lograste hoy y déjalas ahí.'});
+    }
+
+    if (jornada === 'burnout') {
+      tipsMen.push({icon:'🚨', texto:'<strong>Agotamiento mental:</strong> Salir agotado mentalmente todos los días es una señal de burnout temprano. ' + (esMayor ? 'A los 45+ el burnout tiene consecuencias físicas más serias. ' : '') + 'Habla con tu jefe o el área de RRHH sobre la carga de trabajo.'});
+    } else if (jornada === 'agotado') {
+      tipsMen.push({icon:'🌿', texto:'<strong>Agotamiento físico:</strong> ' + (jornadaLarga ? 'Con ' + horasJornada + ' horas de jornada es esperable. ' : '') + 'Una siesta de 20 minutos post-trabajo (no más) recarga más que 2 horas de Netflix. Tu cuerpo lo agradecerá.'});
+    }
+
+    tipsMen.push({icon:'🤝', texto:'<strong>Red de apoyo:</strong> El call center es uno de los trabajos más demandantes emocionalmente. Habla con tus compañeros. Compartir lo que sientes reduce el aislamiento y el estrés en un 30%.'});
+
+    // ---- RENDER ----
+    const nombreGenero = esMujer ? 'tu' : 'tu';
+    document.getElementById('resultEmoji').textContent = estres >= 8 ? '🆘' : estres >= 6 ? '💙' : imc > 25 ? '💪' : '🌟';
+    document.getElementById('resultTitle').textContent = `Plan personalizado para ${esMujer ? 'ella' : esHombre ? 'él' : 'ti'}`;
+    document.getElementById('resultSubtitle').textContent = `${edad} años · IMC ${imc.toFixed(1)} (${perfilIMC}) · Estrés ${estres}/10 · Jornada ${turno} hrs`;
+
+    document.getElementById('badgePerfil').innerHTML = `<div class="badge-perfil">${esMujer ? 'Mujer' : esHombre ? 'Hombre' : 'Persona'} · ${edad} años · ${perfilIMC} · ${turno} hrs</div>`;
+
+    function renderTips(tips, containerId, titulo) {
+      const html = `<h3>${titulo}</h3>` + tips.map(t => `
+        <div class="tip">
+          <div class="tip-icon">${t.icon}</div>
+          <div class="tip-text">${t.texto}</div>
+        </div>`).join('');
+      document.getElementById(containerId).innerHTML = html;
+    }
+
+    renderTips(tipsEj.length ? tipsEj : [{icon:'✅', texto:'Sin problemas físicos críticos detectados. Mantén tu actividad actual y sigue con las pausas activas.'}], 'tipsEjercicio', '🏃 Salud física y movimiento');
+    renderTips(tipsAl.length ? tipsAl : [{icon:'✅', texto:'Tus hábitos alimenticios están bien. Mantén la hidratación y las 3 comidas diarias.'}], 'tipsAlimentacion', '🥗 Nutrición y alimentación');
+    renderTips(tipsMen, 'tipsMental', '🧠 Salud mental y bienestar');
+
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function reiniciar() {
+    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+</body>
+</html>
